@@ -1,0 +1,1833 @@
+<!DOCTYPE html>
+<html lang="en" class="dark scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Kanooni Salah | Advocate Asif Ali | High Court of Delhi</title>
+  <meta name="description" content="Kanooni Salah - Chambers of Advocate Asif Ali, High Court of Delhi. Constitutional Writs, Civil Litigation, Criminal Defense & Bharatiya New Laws 2023." />
+  
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220%22%22 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚖️</text></svg>">
+
+  <!-- Tailwind CSS CDN (100% Free & Unlimited Global CDN) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            serif: ['Cinzel', 'Georgia', 'serif'],
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+          colors: {
+            legal: {
+              950: '#06090e',
+              900: '#0b1320',
+              800: '#141e30',
+              700: '#1e2d48',
+              gold: '#d4af37',
+              goldLight: '#facc15',
+              emerald: '#059669',
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Google Fonts & FontAwesome (100% Free & Unlimited CDNs) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+  <!-- React 18, ReactDOM, Babel (Ensures 100% Zero-Build Standalone Hosting on GitHub Pages) -->
+  <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+  <style>
+    body {
+      background-color: #06090e;
+      color: #f1f5f9;
+    }
+    .gold-gradient-text {
+      background: linear-gradient(135deg, #fef3c7 0%, #fbbf24 45%, #d97706 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .gold-border-glow {
+      box-shadow: 0 0 25px rgba(217, 119, 6, 0.18);
+    }
+    .glass-card {
+      background: rgba(11, 19, 32, 0.78);
+      backdrop-filter: blur(14px);
+      border: 1px solid rgba(217, 119, 6, 0.22);
+    }
+    @media print {
+      body {
+        background-color: #ffffff !important;
+        color: #000000 !important;
+      }
+      header, footer, .no-print, button, input, nav {
+        display: none !important;
+      }
+      .print-only {
+        display: block !important;
+      }
+      table {
+        border-collapse: collapse !important;
+        width: 100% !important;
+        color: #000 !important;
+      }
+      th, td {
+        border: 1px solid #333 !important;
+        padding: 8px !important;
+        color: #000 !important;
+      }
+    }
+  </style>
+</head>
+<body class="bg-[#06090e] text-slate-100 font-sans antialiased min-h-screen selection:bg-amber-500 selection:text-slate-950">
+  <div id="root"></div>
+
+  <script type="text/babel">
+    const { useState, useEffect, useMemo } = React;
+
+    const LAW_CODES = [
+      {
+        id: 'bns',
+        code: 'BNS (2023)',
+        title: 'Bharatiya Nyaya Sanhita',
+        subtitle: 'Replaces Indian Penal Code (IPC 1860)',
+        description: 'Modernized criminal jurisprudence framework restructuring penal offenses, cyber crimes, community service penalties, and organized crime prosecution.',
+        highlights: [
+          { label: 'Sec 103', text: 'Punishment for Murder (Replaces IPC Sec 302)' },
+          { label: 'Sec 318', text: 'Cheating & Dishonest Inducement (Replaces IPC Sec 420)' },
+          { label: 'Sec 111', text: 'Organized Crime, Syndicates & Gang Offenses' },
+          { label: 'Sec 69', text: 'Sexual Intercourse by Deceitful Means / False Promise' },
+          { label: 'Sec 106', text: 'Causing Death by Negligence (Rash Driving & Medical)' },
+          { label: 'Sec 303', text: 'Theft & Snatching Provisions' }
+        ]
+      },
+      {
+        id: 'bnss',
+        code: 'BNSS (2023)',
+        title: 'Bharatiya Nagarik Suraksha Sanhita',
+        subtitle: 'Replaces Code of Criminal Procedure (CrPC 1973)',
+        description: 'Enforces strict investigation timelines, mandatory electronic evidence collection, mandatory e-FIR filings, time-bound judgment deliveries, and undertrial relief norms.',
+        highlights: [
+          { label: 'Sec 173', text: 'Mandatory Zero FIR & Electronic FIR (E-FIR)' },
+          { label: 'Sec 187', text: 'Police Custody & Detention Safeguards' },
+          { label: 'Sec 481', text: 'Relief for Undertrial Prisoners / First-time Offenders' },
+          { label: 'Sec 480/482', text: 'Regular Bail & Anticipatory Bail Norms' },
+          { label: 'Sec 528', text: 'Inherent Powers of High Court / Quashing of FIR (Replaces CrPC Sec 482)' },
+          { label: 'Mandatory Video', text: 'Compulsory Videography during Search, Seizure & Crime Scene Investigation' }
+        ]
+      },
+      {
+        id: 'bsa',
+        code: 'BSA (2023)',
+        title: 'Bharatiya Sakshya Adhiniyam',
+        subtitle: 'Replaces Indian Evidence Act (1872)',
+        description: 'Comprehensive recognition of electronic and digital evidence, digital signatures, server logs, phone recordings, and modern forensic admissibility standards.',
+        highlights: [
+          { label: 'Sec 61', text: 'Admissibility of Electronic & Digital Records' },
+          { label: 'Sec 63', text: 'Certificate for Electronic Records (Replaces Sec 65B Evidence Act)' },
+          { label: 'Sec 24', text: 'Expanded Scope of Primary and Secondary Evidence' },
+          { label: 'Sec 116', text: 'Accomplice Evidence Framework' },
+          { label: 'Sec 132', text: 'Professional Privilege of Advocates & Attorneys' }
+        ]
+      },
+      {
+        id: 'elib',
+        code: 'DHC e-Library',
+        title: 'High Court of Delhi e-Library Portal',
+        subtitle: 'Official Judicial & Statutory Repository',
+        description: 'Direct portal to official cause lists, daily orders, reported judgments, rules registry, and central bare acts.',
+        highlights: [
+          { label: 'Judgments', text: 'Delhi High Court Landmark Case Judgment Search' },
+          { label: 'Cause List', text: 'Daily Roster, Supplementary Lists & Case Status' },
+          { label: 'Bare Acts', text: 'Official Gazette Statutes, High Court Rules & Practice Directions' },
+          { label: 'Virtual Courts', text: 'Video Conferencing Links & Hybrid Hearing Rosters' }
+        ],
+        externalUrl: 'https://delhihighcourt.nic.in/web/e-library'
+      }
+    ];
+
+    const LAW_CONVERTER_DATA = [
+      { oldAct: 'IPC 302', oldName: 'Murder', newAct: 'BNS Sec 103', newDetails: 'Punishment for murder (Death or imprisonment for life)' },
+      { oldAct: 'IPC 420', oldName: 'Cheating and dishonestly inducing delivery of property', newAct: 'BNS Sec 318', newDetails: 'Cheating with imprisonment up to 7 years and fine' },
+      { oldAct: 'IPC 376', oldName: 'Rape / Aggravated Offenses', newAct: 'BNS Sec 64 & 70', newDetails: 'Punishment for rape, gang rape provisions' },
+      { oldAct: 'IPC 498A', oldName: 'Cruelty by husband or relatives', newAct: 'BNS Sec 85 / 86', newDetails: 'Husband or relative subjecting woman to cruelty' },
+      { oldAct: 'IPC 304A', oldName: 'Causing death by rash and negligent act', newAct: 'BNS Sec 106', newDetails: 'Death by negligence with specific hit-and-run escalation' },
+      { oldAct: 'IPC 307', oldName: 'Attempt to Murder', newAct: 'BNS Sec 109', newDetails: 'Attempt to murder punishment' },
+      { oldAct: 'IPC 124A', oldName: 'Sedition', newAct: 'BNS Sec 152', newDetails: 'Acts endangering sovereignty, unity and integrity of India' },
+      { oldAct: 'CrPC 482', oldName: 'Inherent Powers of High Court to Quash FIR', newAct: 'BNSS Sec 528', newDetails: 'High Court power to prevent abuse of process of any court' },
+      { oldAct: 'CrPC 438', oldName: 'Anticipatory Bail', newAct: 'BNSS Sec 482', newDetails: 'Direction for grant of bail to person apprehending arrest' },
+      { oldAct: 'CrPC 439', oldName: 'Special Powers of High Court / Sessions on Regular Bail', newAct: 'BNSS Sec 483', newDetails: 'Special powers regarding bail' },
+      { oldAct: 'CrPC 154', oldName: 'First Information Report (FIR)', newAct: 'BNSS Sec 173', newDetails: 'Information in cognizable cases, mandatory e-FIR & Zero FIR' },
+      { oldAct: 'CrPC 125', oldName: 'Maintenance for Wives, Children & Parents', newAct: 'BNSS Sec 144', newDetails: 'Order for maintenance of wives, children and parents' },
+      { oldAct: 'IEA 65B', oldName: 'Certificate for Admissibility of Electronic Records', newAct: 'BSA Sec 63', newDetails: 'Special conditions for admissibility of electronic records' },
+      { oldAct: 'IEA 126', oldName: 'Professional Communications / Advocate Privilege', newAct: 'BSA Sec 132', newDetails: 'Absolute legal practitioner privilege against disclosure' }
+    ];
+
+    const DEFAULT_CASES = [
+      { id: '1', caseNo: 'W.P.(C) 4120/2025', court: 'Delhi High Court - Court 14', client: 'Ramesh Sharma', opposite: 'Union of India & Ors', nextDate: '2026-10-15', stage: 'Final Arguments', type: 'Civil Writ' },
+      { id: '2', caseNo: 'Bail Appln 892/2026', court: 'Patiala House Courts', client: 'Vikramaditya Singh', opposite: 'State (NCT of Delhi)', nextDate: '2026-10-18', stage: 'Arguments on Bail', type: 'Criminal' },
+      { id: '3', caseNo: 'CRL.M.C. 1405/2026', court: 'Delhi High Court - Court 22', client: 'Meenakshi Gupta', opposite: 'State & Anr', nextDate: '2026-10-24', stage: 'Quashing Petition (Sec 528 BNSS)', type: 'Criminal Misc' },
+      { id: '4', caseNo: 'CS (OS) 319/2025', court: 'Delhi High Court - Original Side', client: 'Apex Infratech Pvt Ltd', opposite: 'Delhi Development Authority', nextDate: '2026-11-02', stage: 'Evidence Recording', type: 'Commercial Suit' },
+      { id: '5', caseNo: 'SLP (Crl) 9811/2026', court: 'Supreme Court of India', client: 'Harpreet Singh Sandhu', opposite: 'Central Bureau of Investigation', nextDate: '2026-11-10', stage: 'Notice & Interim Relief', type: 'Special Leave Petition' }
+    ];
+
+    const PRACTICE_AREAS = [
+      { 
+        title: 'Constitutional & Writ Petitions', 
+        desc: 'Writs of Habeas Corpus, Mandamus, Certiorari, Prohibition, and Quo Warranto under Article 226 before High Court of Delhi & Article 32 before Supreme Court.', 
+        icon: 'fa-scale-balanced',
+        focus: 'Fundamental Rights, Service Writs, Public Interest Litigation (PIL), Arbitrary State Actions'
+      },
+      { 
+        title: 'Criminal Defense & Bail Matters', 
+        desc: 'Anticipatory Bail, Regular Bail under BNSS/CrPC, FIR Quashing under Sec 528 BNSS / Sec 482 CrPC, Trial Defense, Appeals before High Court & Supreme Court.', 
+        icon: 'fa-gavel',
+        focus: 'White Collar Crime, PMLA, CBI Trials, Narcotic Cases (NDPS), Cyber Offenses'
+      },
+      { 
+        title: 'Civil Litigation & Property Rights', 
+        desc: 'Original Civil Suits, Temporary Injunctions, Specific Performance, Land & Property Disputes, Title Declarations, Appellate Litigation in High Court & District Courts.', 
+        icon: 'fa-building-columns',
+        focus: 'Delhi Rent Control, Partition Suits, Succession Certificates, Execution Petitions'
+      },
+      { 
+        title: 'Commercial Arbitration', 
+        desc: 'Arbitration petitions under Sec 9 (Interim Relief), Sec 11 (Appointment of Arbitrator), Sec 34 (Setting Aside Awards) before High Court Commercial Division.', 
+        icon: 'fa-handshake',
+        focus: 'Contractual Disputes, Infrastructure Arbitrations, Injunctions, Enforcement of Foreign Awards'
+      },
+      { 
+        title: 'Matrimonial & Family Disputes', 
+        desc: 'Mutual Consent & Contested Divorce proceedings under Hindu Marriage Act, Maintenance under Sec 144 BNSS, Child Custody, Domestic Violence defense, Family Settlements.', 
+        icon: 'fa-users',
+        focus: 'Quashing of False 498A Cases, Permanent Alimony, HMA Sec 13B & Sec 24'
+      },
+      { 
+        title: 'Corporate & Regulatory Compliance', 
+        desc: 'NCLT/NCLAT Corporate Insolvency (IBC), Prevention of Money Laundering (ED), SFIO investigations, Consumer Disputes (NCDRC/SCDRC), Regulatory Writs.', 
+        icon: 'fa-shield-halved',
+        focus: 'Section 7 & 9 IBC, Director Liability, EOW Prosecutions, Environmental Writs'
+      }
+    ];
+
+    const COURT_FORUMS = [
+      { name: 'High Court of Delhi', location: 'Sher Shah Road, New Delhi', type: 'Primary Jurisdiction' },
+      { name: 'Supreme Court of India', location: 'Tilak Marg, New Delhi', type: 'Apex Court' },
+      { name: 'Patiala House Courts Complex', location: 'India Gate, New Delhi', type: 'District Court' },
+      { name: 'Tis Hazari Courts Complex', location: 'Civil Lines, Delhi', type: 'Central District' },
+      { name: 'Saket District Courts', location: 'Saket, South Delhi', type: 'District Court' },
+      { name: 'Rouse Avenue Court Complex', location: 'Deen Dayal Upadhyaya Marg', type: 'Special CBI / PMLA' },
+      { name: 'NCLT & NCLAT', location: 'CGO Complex / MTNL Building', type: 'Tribunal' },
+      { name: 'Karkardooma, Rohini & Dwarka', location: 'Delhi NCR Complexes', type: 'District Courts' }
+    ];
+
+    // UNLIMITED FREE LOCAL VAULT USERS (Stored in Browser LocalStorage - Never expires, zero cost)
+    const DEFAULT_VAULT_USERS = [
+      { id: 'admin', email: 'admin@kanoonisalah.com', name: 'Advocate Asif Ali', pass: 'admin' },
+      { id: 'asifali', email: 'asif@kanoonisalah.com', name: 'Advocate Asif Ali', pass: 'asif123' }
+    ];
+
+    function App() {
+      const [accepted, setAccepted] = useState(false);
+      const [view, setView] = useState('public'); // 'public' | 'admin'
+      const [selectedCode, setSelectedCode] = useState(LAW_CODES[0]);
+      
+      // PERSISTENT CAUSELIST CASES (UNLIMITED FREE LOCALSTORAGE)
+      const [cases, setCases] = useState(() => {
+        try {
+          const saved = localStorage.getItem('advocate_cases_data');
+          return saved ? JSON.parse(saved) : DEFAULT_CASES;
+        } catch(e) {
+          return DEFAULT_CASES;
+        }
+      });
+
+      const [searchQuery, setSearchQuery] = useState('');
+      const [courtFilter, setCourtFilter] = useState('ALL');
+      const [showAddModal, setShowAddModal] = useState(false);
+      const [showConsultModal, setShowConsultModal] = useState(false);
+      const [showSudhirModal, setShowSudhirModal] = useState(false);
+      const [converterSearch, setConverterSearch] = useState('');
+
+      // ==========================================
+      // 100% UNLIMITED FREE AUTHENTICATION ENGINE
+      // ==========================================
+      const [authMode, setAuthMode] = useState('login'); // 'login' | 'signup' | 'forgot'
+      const [showChangeCredsModal, setShowChangeCredsModal] = useState(false);
+
+      // Current Active Session
+      const [currentUser, setCurrentUser] = useState(() => {
+        try {
+          const saved = sessionStorage.getItem('advocate_session_user');
+          return saved ? JSON.parse(saved) : null;
+        } catch(e) {
+          return null;
+        }
+      });
+
+      // Form inputs
+      const [loginIdent, setLoginIdent] = useState('');
+      const [loginPass, setLoginPass] = useState('');
+      const [showPass, setShowPass] = useState(false);
+      
+      // Signup inputs
+      const [signupName, setSignupName] = useState('');
+      const [signupEmail, setSignupEmail] = useState('');
+      const [signupPass, setSignupPass] = useState('');
+      const [signupPassConfirm, setSignupPassConfirm] = useState('');
+
+      // Forgot / Recover Password
+      const [forgotEmail, setForgotEmail] = useState('');
+
+      // Change Password & ID inputs
+      const [oldPass, setOldPass] = useState('');
+      const [newIdent, setNewIdent] = useState('');
+      const [newPass, setNewPass] = useState('');
+      const [newPassConfirm, setNewPassConfirm] = useState('');
+
+      // Status messages
+      const [authMsg, setAuthMsg] = useState({ text: '', type: '' });
+
+      // Persistent Vault Users
+      const [vaultUsers, setVaultUsers] = useState(() => {
+        try {
+          const saved = localStorage.getItem('kanooni_vault_users');
+          return saved ? JSON.parse(saved) : DEFAULT_VAULT_USERS;
+        } catch(e) {
+          return DEFAULT_VAULT_USERS;
+        }
+      });
+
+      // New Case Form state
+      const [newCase, setNewCase] = useState({
+        caseNo: '',
+        court: 'Delhi High Court - Court 14',
+        client: '',
+        opposite: '',
+        nextDate: '',
+        stage: 'Filing / Admission',
+        type: 'Civil Writ'
+      });
+
+      // Consultation Form state
+      const [consultForm, setConsultForm] = useState({
+        name: '',
+        phone: '',
+        matterType: 'High Court Writ Petition (Art 226)',
+        court: 'High Court of Delhi',
+        urgency: 'Standard Listing',
+        details: ''
+      });
+
+      useEffect(() => {
+        if (sessionStorage.getItem('bci_disclaimer_accepted')) {
+          setAccepted(true);
+        }
+      }, []);
+
+      // Persist cases on update (Unlimited Free Storage)
+      useEffect(() => {
+        try {
+          localStorage.setItem('advocate_cases_data', JSON.stringify(cases));
+        } catch(e) {}
+      }, [cases]);
+
+      // Persist Vault Users (Unlimited Free Storage)
+      useEffect(() => {
+        try {
+          localStorage.setItem('kanooni_vault_users', JSON.stringify(vaultUsers));
+        } catch(e) {}
+      }, [vaultUsers]);
+
+      const handleAgree = () => {
+        sessionStorage.setItem('bci_disclaimer_accepted', 'true');
+        setAccepted(true);
+      };
+
+      // ==========================================
+      // UNLIMITED FREE VAULT AUTHENTICATION
+      // ==========================================
+
+      const handleLoginSubmit = (e) => {
+        e.preventDefault();
+        setAuthMsg({ text: '', type: '' });
+
+        const idTrim = loginIdent.trim().toLowerCase();
+        const passTrim = loginPass.trim();
+
+        const matched = vaultUsers.find(u => 
+          (u.id.toLowerCase() === idTrim || u.email.toLowerCase() === idTrim) && 
+          u.pass === passTrim
+        );
+
+        if (!matched) {
+          setAuthMsg({ text: 'Invalid Advocate ID / Email or Password. Please try again.', type: 'error' });
+          return;
+        }
+
+        const userObj = {
+          id: matched.id,
+          email: matched.email,
+          name: matched.name,
+          provider: 'unlimited_vault'
+        };
+        setCurrentUser(userObj);
+        sessionStorage.setItem('advocate_session_user', JSON.stringify(userObj));
+        setAuthMsg({ text: `Welcome back, ${matched.name}!`, type: 'success' });
+      };
+
+      const handleSignupSubmit = (e) => {
+        e.preventDefault();
+        setAuthMsg({ text: '', type: '' });
+        
+        if (signupPass !== signupPassConfirm) {
+          setAuthMsg({ text: 'Passwords do not match.', type: 'error' });
+          return;
+        }
+        if (signupPass.length < 4) {
+          setAuthMsg({ text: 'Password must be at least 4 characters.', type: 'error' });
+          return;
+        }
+
+        const emailTrim = signupEmail.trim();
+        const exists = vaultUsers.find(u => u.email.toLowerCase() === emailTrim.toLowerCase() || u.id.toLowerCase() === emailTrim.toLowerCase());
+        if (exists) {
+          setAuthMsg({ text: 'An account with this ID or Email already exists.', type: 'error' });
+          return;
+        }
+
+        const newUser = {
+          id: emailTrim.split('@')[0] || emailTrim,
+          email: emailTrim,
+          name: signupName.trim() || 'Advocate',
+          pass: signupPass
+        };
+
+        const updated = [...vaultUsers, newUser];
+        setVaultUsers(updated);
+
+        const userObj = {
+          id: newUser.id,
+          email: newUser.email,
+          name: newUser.name,
+          provider: 'unlimited_vault'
+        };
+        setCurrentUser(userObj);
+        sessionStorage.setItem('advocate_session_user', JSON.stringify(userObj));
+        setAuthMsg({ text: 'Account registered successfully! Logged in.', type: 'success' });
+      };
+
+      const handleForgotSubmit = (e) => {
+        e.preventDefault();
+        setAuthMsg({ text: '', type: '' });
+
+        const searchTrim = forgotEmail.trim().toLowerCase();
+        const found = vaultUsers.find(u => u.email.toLowerCase() === searchTrim || u.id.toLowerCase() === searchTrim);
+
+        if (found) {
+          setAuthMsg({ 
+            text: `Account Verified! The current password for ${found.name} (${found.id}) is "${found.pass}". You can log in or change it anytime.`, 
+            type: 'success' 
+          });
+        } else {
+          setAuthMsg({ text: 'No registered account found with this ID or Email.', type: 'error' });
+        }
+      };
+
+      // CHANGE ID & PASSWORD IN THE FUTURE (100% UNLIMITED & FREE)
+      const handleChangeCredsSubmit = (e) => {
+        e.preventDefault();
+        setAuthMsg({ text: '', type: '' });
+
+        if (newPass && newPass !== newPassConfirm) {
+          setAuthMsg({ text: 'New Passwords do not match.', type: 'error' });
+          return;
+        }
+
+        const userIdx = vaultUsers.findIndex(u => u.id === currentUser?.id || u.email === currentUser?.email);
+        if (userIdx === -1) {
+          setAuthMsg({ text: 'User profile not found.', type: 'error' });
+          return;
+        }
+
+        if (vaultUsers[userIdx].pass !== oldPass) {
+          setAuthMsg({ text: 'Current password does not match. Please verify your old password.', type: 'error' });
+          return;
+        }
+
+        const updated = [...vaultUsers];
+        if (newPass) updated[userIdx].pass = newPass;
+        if (newIdent && newIdent.trim()) {
+          const cleanIdent = newIdent.trim();
+          updated[userIdx].id = cleanIdent.split('@')[0];
+          updated[userIdx].email = cleanIdent;
+        }
+        setVaultUsers(updated);
+
+        const newSession = {
+          ...currentUser,
+          id: updated[userIdx].id,
+          email: updated[userIdx].email
+        };
+        setCurrentUser(newSession);
+        sessionStorage.setItem('advocate_session_user', JSON.stringify(newSession));
+
+        setAuthMsg({ text: 'Credentials updated successfully in Secure Vault!', type: 'success' });
+        setShowChangeCredsModal(false);
+        setOldPass('');
+        setNewPass('');
+        setNewPassConfirm('');
+        setNewIdent('');
+      };
+
+      const handleLogout = () => {
+        setCurrentUser(null);
+        sessionStorage.removeItem('advocate_session_user');
+        setView('public');
+      };
+
+      // ==========================================
+      // CAUSE LIST DIARY ACTIONS
+      // ==========================================
+      const handleAddCase = (e) => {
+        e.preventDefault();
+        if (!newCase.caseNo || !newCase.client) return;
+        const entry = {
+          ...newCase,
+          id: Date.now().toString()
+        };
+        setCases([entry, ...cases]);
+        setNewCase({ caseNo: '', court: 'Delhi High Court', client: '', opposite: '', nextDate: '', stage: 'Filing / Admission', type: 'Civil Writ' });
+        setShowAddModal(false);
+      };
+
+      const handleDeleteCase = (id) => {
+        if (window.confirm('Are you sure you want to remove this case entry from your diary?')) {
+          setCases(cases.filter(c => c.id !== id));
+        }
+      };
+
+      const handleResetCases = () => {
+        if (window.confirm('Reset cause list to default chambers sample cases?')) {
+          setCases(DEFAULT_CASES);
+          localStorage.removeItem('advocate_cases_data');
+        }
+      };
+
+      const handleConsultSubmit = (e) => {
+        e.preventDefault();
+        const text = `Hello Advocate Asif Ali Sir, I would like to schedule a Legal Consultation:%0A%0A*Name:* ${encodeURIComponent(consultForm.name)}%0A*Phone:* ${encodeURIComponent(consultForm.phone)}%0A*Matter:* ${encodeURIComponent(consultForm.matterType)}%0A*Court Forum:* ${encodeURIComponent(consultForm.court)}%0A*Urgency:* ${encodeURIComponent(consultForm.urgency)}%0A*Case Synopsis:* ${encodeURIComponent(consultForm.details || 'Legal assistance requested')}`;
+        window.open(`https://wa.me/919910262785?text=${text}`, '_blank');
+        setShowConsultModal(false);
+      };
+
+      // Filtered cases
+      const filteredCases = useMemo(() => {
+        return cases.filter(c => {
+          const matchQuery = 
+            c.caseNo.toLowerCase().includes(searchQuery.toLowerCase()) ||
+            c.client.toLowerCase().includes(searchQuery.toLowerCase()) ||
+            c.court.toLowerCase().includes(searchQuery.toLowerCase()) ||
+            (c.opposite && c.opposite.toLowerCase().includes(searchQuery.toLowerCase())) ||
+            (c.stage && c.stage.toLowerCase().includes(searchQuery.toLowerCase()));
+
+          if (!matchQuery) return false;
+          if (courtFilter === 'ALL') return true;
+          if (courtFilter === 'HC') return c.court.toLowerCase().includes('high court');
+          if (courtFilter === 'SC') return c.court.toLowerCase().includes('supreme court');
+          if (courtFilter === 'DISTRICT') return !c.court.toLowerCase().includes('high court') && !c.court.toLowerCase().includes('supreme court');
+          return true;
+        });
+      }, [cases, searchQuery, courtFilter]);
+
+      // Filtered section converter
+      const filteredConverter = useMemo(() => {
+        if (!converterSearch.trim()) return LAW_CONVERTER_DATA;
+        const q = converterSearch.toLowerCase();
+        return LAW_CONVERTER_DATA.filter(item => 
+          item.oldAct.toLowerCase().includes(q) ||
+          item.oldName.toLowerCase().includes(q) ||
+          item.newAct.toLowerCase().includes(q) ||
+          item.newDetails.toLowerCase().includes(q)
+        );
+      }, [converterSearch]);
+
+      return (
+        <div className="flex flex-col min-h-screen bg-[#06090e] text-slate-100 font-sans relative overflow-x-hidden">
+          
+          {/* BCI RULE 36 STATUTORY DISCLAIMER MODAL */}
+          {!accepted && (
+            <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/95 backdrop-blur-md p-4 animate-fade-in">
+              <div className="max-w-2xl w-full bg-slate-900/95 border-2 border-amber-500/40 rounded-3xl shadow-[0_0_60px_rgba(217,119,6,0.25)] p-6 sm:p-8 text-slate-200 space-y-5 relative">
+                <div className="flex items-center gap-3.5 border-b border-slate-800 pb-4">
+                  <div className="w-12 h-12 rounded-2xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-400 text-xl shadow-inner">
+                    <i className="fa-solid fa-scale-balanced"></i>
+                  </div>
+                  <div>
+                    <h2 className="text-xl sm:text-2xl font-serif font-bold text-amber-400">Kanooni Salah — Statutory Disclaimer</h2>
+                    <p className="text-xs text-slate-400">Bar Council of India (BCI) Rule 36 Compliance Notice</p>
+                  </div>
+                </div>
+
+                <div className="text-xs sm:text-sm leading-relaxed space-y-3.5 text-slate-300 max-h-[58vh] overflow-y-auto pr-2">
+                  <p className="font-semibold text-slate-100 bg-slate-950/60 p-3 rounded-xl border border-slate-800">
+                    As per the statutory rules of the Bar Council of India, advocates are strictly prohibited from soliciting work or advertising in any form or manner. By clicking <span className="text-amber-400 font-bold">"I Agree & Proceed"</span>, you explicitly acknowledge and confirm the following:
+                  </p>
+                  <ul className="space-y-2.5 list-none pl-1">
+                    <li className="flex items-start gap-2.5">
+                      <i className="fa-solid fa-circle-check text-amber-400 text-sm mt-0.5 shrink-0"></i>
+                      <span>You are seeking information regarding <strong>Kanooni Salah (Chambers of Advocate Asif Ali, High Court of Delhi)</strong> voluntarily for your personal legal knowledge and reference.</span>
+                    </li>
+                    <li className="flex items-start gap-2.5">
+                      <i className="fa-solid fa-circle-check text-amber-400 text-sm mt-0.5 shrink-0"></i>
+                      <span>There has been no advertisement, solicitation, personal communication, invitation or legal marketing of any sort from Advocate Asif Ali or any member of his legal chambers.</span>
+                    </li>
+                    <li className="flex items-start gap-2.5">
+                      <i className="fa-solid fa-circle-check text-amber-400 text-sm mt-0.5 shrink-0"></i>
+                      <span>The material on this website provides educational insight into Indian statutory jurisprudence (BNS, BNSS, BSA 2023) and does not constitute formal legal counsel.</span>
+                    </li>
+                    <li className="flex items-start gap-2.5">
+                      <i className="fa-solid fa-circle-check text-amber-400 text-sm mt-0.5 shrink-0"></i>
+                      <span>Browsing this website or communicating with the chambers does not automatically establish an advocate-client relationship.</span>
+                    </li>
+                  </ul>
+                </div>
+
+                <div className="pt-4 border-t border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-4">
+                  <span className="text-[11px] text-slate-500 font-mono">High Court of Delhi • Bar Council of India Rule 36</span>
+                  <button 
+                    onClick={handleAgree} 
+                    className="w-full sm:w-auto px-8 py-3.5 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 font-bold rounded-xl text-xs sm:text-sm shadow-xl shadow-amber-500/25 transition-all duration-300 transform hover:scale-[1.02] flex items-center justify-center gap-2"
+                  >
+                    <span>I Agree & Proceed</span>
+                    <i className="fa-solid fa-arrow-right"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* TOP EXECUTIVE UTILITY BAR */}
+          <div className="bg-[#04070a] border-b border-slate-800/60 py-2 px-4 sm:px-8 text-[11px] text-slate-400 hidden sm:block">
+            <div className="max-w-7xl mx-auto flex justify-between items-center">
+              <div className="flex items-center gap-4">
+                <span className="flex items-center gap-1.5 text-amber-400/90 font-medium">
+                  <i className="fa-solid fa-building-columns text-[10px]"></i>
+                  <span>High Court of Delhi • Supreme Court of India • District Courts Delhi NCR</span>
+                </span>
+
+              </div>
+              <div className="flex items-center gap-4">
+                <a href="tel:+919910262785" className="hover:text-amber-400 transition-colors flex items-center gap-1">
+                  <i className="fa-solid fa-phone text-[10px] text-emerald-400"></i>
+                  <span>+91 9910262785</span>
+                </a>
+                <span className="text-slate-600">|</span>
+                <a 
+                  href="https://delhihighcourt.nic.in/web/e-library" 
+                  target="_blank" 
+                  rel="noreferrer"
+                  className="hover:text-amber-400 transition-colors flex items-center gap-1 text-slate-300"
+                >
+                  <i className="fa-solid fa-book-bookmark text-[10px] text-amber-400"></i>
+                  <span>Official DHC e-Library ↗</span>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          {/* MAIN HEADER / NAVIGATION */}
+          <header className="sticky top-0 z-40 bg-[#06090e]/92 backdrop-blur-md border-b border-slate-800/80 px-4 sm:px-8 py-3.5 transition-all">
+            <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+              
+              {/* BRAND LOGO */}
+              <div className="flex items-center gap-3.5 cursor-pointer" onClick={() => setView('public')}>
+                <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-amber-500/25 to-slate-900 border border-amber-500/40 flex items-center justify-center text-amber-400 shadow-[0_0_15px_rgba(217,119,6,0.2)]">
+                  <i className="fa-solid fa-scale-balanced text-xl"></i>
+                </div>
+                <div>
+                  <span className="font-serif font-black text-xl sm:text-2xl gold-gradient-text tracking-wider block leading-tight">KANOONI SALAH</span>
+                  <span className="text-[11px] text-slate-400 block font-medium tracking-wide">
+                    Chambers of Advocate Asif Ali • High Court of Delhi
+                  </span>
+                </div>
+              </div>
+              
+              {/* ACTION LINKS & PORTAL SWITCHER */}
+              <div className="flex items-center flex-wrap gap-2.5 sm:gap-3 w-full md:w-auto justify-end">
+                {view === 'public' && (
+                  <nav className="hidden lg:flex items-center gap-1 mr-2 text-xs text-slate-300">
+                    <a href="#practice-areas" className="px-2.5 py-1.5 rounded-lg hover:text-amber-400 hover:bg-slate-900 transition-colors">Practice Areas</a>
+                    <a href="#criminal-laws" className="px-2.5 py-1.5 rounded-lg hover:text-amber-400 hover:bg-slate-900 transition-colors">New Laws 2023</a>
+                    <a href="#section-converter" className="px-2.5 py-1.5 rounded-lg hover:text-amber-400 hover:bg-slate-900 transition-colors">Section Converter</a>
+                    <a href="#court-forums" className="px-2.5 py-1.5 rounded-lg hover:text-amber-400 hover:bg-slate-900 transition-colors">Courts</a>
+                  </nav>
+                )}
+
+                <a 
+                  href="https://delhihighcourt.nic.in/web/e-library" 
+                  target="_blank" 
+                  rel="noreferrer" 
+                  className="hidden sm:inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-800 text-xs text-slate-300 hover:text-amber-400 transition-all"
+                >
+                  <i className="fa-solid fa-book-bookmark text-amber-500"></i>
+                  <span>DHC e-Library ↗</span>
+                </a>
+
+                {view === 'admin' && currentUser && (
+                  <>
+                    <button 
+                      onClick={() => setShowChangeCredsModal(true)}
+                      className="px-3 py-2 bg-amber-500/10 hover:bg-amber-500/20 border border-amber-500/30 text-amber-300 text-xs font-semibold rounded-xl flex items-center gap-1.5 transition-colors"
+                      title="Change ID or Password anytime in future"
+                    >
+                      <i className="fa-solid fa-key"></i>
+                      <span className="hidden sm:inline">Change Password/ID</span>
+                    </button>
+                    
+                    <button 
+                      onClick={handleLogout}
+                      className="px-3.5 py-2 bg-rose-500/10 hover:bg-rose-500/20 border border-rose-500/30 text-rose-400 text-xs font-semibold rounded-xl flex items-center gap-1.5 transition-colors"
+                    >
+                      <i className="fa-solid fa-right-from-bracket"></i>
+                      <span>Logout</span>
+                    </button>
+                  </>
+                )}
+
+                <button 
+                  onClick={() => setView(view === 'public' ? 'admin' : 'public')} 
+                  className={`px-4 py-2 text-xs font-semibold rounded-xl border transition-all duration-300 flex items-center gap-2 ${
+                    view === 'public' 
+                      ? 'bg-amber-500/15 border-amber-500/50 text-amber-300 hover:bg-amber-500/25 shadow-md shadow-amber-500/10' 
+                      : 'bg-emerald-500/15 border-emerald-500/50 text-emerald-300 hover:bg-emerald-500/25 shadow-md shadow-emerald-500/10'
+                  }`}
+                >
+                  <i className={`fa-solid ${view === 'public' ? 'fa-lock' : 'fa-globe'}`}></i>
+                  <span>{view === 'public' ? 'Advocate Causelist Portal' : 'Public Website'}</span>
+                </button>
+              </div>
+            </div>
+          </header>
+
+          {/* MAIN VIEW CONTENT */}
+          {view === 'public' ? (
+            <main className="flex-1 space-y-16 sm:space-y-24 py-8 sm:py-12">
+              
+              {/* HERO SECTION */}
+              <section className="max-w-7xl mx-auto px-4 sm:px-8 grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+                <div className="lg:col-span-7 space-y-6">
+                  
+                  <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-400 text-xs font-semibold tracking-wide">
+                    <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse"></span>
+                    <span>High Court of Delhi • Supreme Court of India Practice</span>
+                  </div>
+
+                  <h1 className="text-4xl sm:text-5xl lg:text-6xl font-serif font-extrabold text-slate-100 leading-[1.15] tracking-tight">
+                    Kanooni Salah <br/>
+                    <span className="gold-gradient-text">Advocate Asif Ali</span>
+                  </h1>
+
+                  <p className="text-slate-300 text-sm sm:text-base leading-relaxed max-w-2xl font-light">
+                    Practicing Advocate appearing before the <strong>High Court of Delhi</strong>, <strong>Supreme Court of India</strong>, and District Courts across Delhi NCR. Providing courtroom advocacy and litigation counsel in Constitutional Writs, Bail & Criminal Defense, Civil Litigation, Commercial Arbitration, and Bharatiya New Criminal Laws (BNS, BNSS, BSA 2023).
+                  </p>
+
+                  {/* CALL TO ACTION BUTTONS */}
+                  <div className="flex flex-wrap gap-3.5 pt-2">
+                    <a 
+                      href="https://wa.me/919910262785?text=Hello%20Advocate%20Asif%20Ali%20Sir%2C%20I%20need%20KANOONI%20SALAH." 
+                      target="_blank" 
+                      rel="noreferrer"
+                      className="px-6 py-3.5 bg-emerald-600 hover:bg-emerald-500 text-white font-semibold text-xs sm:text-sm rounded-xl shadow-lg shadow-emerald-600/25 flex items-center gap-2.5 transition-all transform hover:scale-[1.02]"
+                    >
+                      <i className="fa-brands fa-whatsapp text-lg"></i>
+                      <span>WhatsApp Direct (+91 9910262785)</span>
+                    </a>
+
+                    <button 
+                      onClick={() => setShowConsultModal(true)}
+                      className="px-6 py-3.5 bg-amber-500/20 hover:bg-amber-500/30 border border-amber-500/50 text-amber-300 font-semibold text-xs sm:text-sm rounded-xl flex items-center gap-2.5 transition-all shadow-md hover:shadow-amber-500/10"
+                    >
+                      <i className="fa-regular fa-calendar-check text-amber-400"></i>
+                      <span>Chamber Appointment Request</span>
+                    </button>
+
+                    <a 
+                      href="tel:+919910262785"
+                      className="px-5 py-3.5 bg-slate-900 hover:bg-slate-800 border border-slate-700 text-slate-300 font-semibold text-xs sm:text-sm rounded-xl flex items-center gap-2 transition-all"
+                    >
+                      <i className="fa-solid fa-phone text-emerald-400"></i>
+                      <span>Call Chambers</span>
+                    </a>
+                  </div>
+
+                  {/* KEY JURISDICTIONS ACCREDITATION */}
+                  <div className="pt-6 grid grid-cols-2 sm:grid-cols-3 gap-4 border-t border-slate-800/80 text-left">
+                    <div className="p-3 rounded-xl bg-slate-950/60 border border-slate-800/80">
+                      <span className="text-xl sm:text-2xl font-serif font-bold text-amber-400">High Court</span>
+                      <span className="block text-xs text-slate-400 mt-0.5">Delhi Primary Jurisdiction</span>
+                    </div>
+                    <div className="p-3 rounded-xl bg-slate-950/60 border border-slate-800/80">
+                      <span className="text-xl sm:text-2xl font-serif font-bold text-amber-400">Supreme Court</span>
+                      <span className="block text-xs text-slate-400 mt-0.5">Special Leave Petitions & Writs</span>
+                    </div>
+                    <div className="p-3 rounded-xl bg-slate-950/60 border border-slate-800/80 col-span-2 sm:col-span-1">
+                      <span className="text-xl sm:text-2xl font-serif font-bold text-amber-400">BNS 2023</span>
+                      <span className="block text-xs text-slate-400 mt-0.5">New Criminal Laws Counsel</span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* ADVOCATE PORTRAIT CARD */}
+                <div className="lg:col-span-5 flex justify-center">
+                  <div className="w-full max-w-sm rounded-3xl overflow-hidden border-2 border-amber-500/40 shadow-[0_0_45px_rgba(217,119,6,0.2)] bg-slate-900 relative group">
+                    <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent z-10 opacity-75"></div>
+                    <img 
+                      src="./advocate-asif-ali.png" 
+                      alt="Advocate Asif Ali - High Court of Delhi" 
+                      className="w-full h-[430px] object-cover object-top transform group-hover:scale-105 transition-transform duration-700"
+                      onError={(e) => {
+                        e.target.onerror = null;
+                        e.target.src = "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&q=80&w=600";
+                      }}
+                    />
+                    <div className="absolute bottom-0 inset-x-0 p-5 z-20 text-center bg-slate-950/92 backdrop-blur-md border-t border-slate-800">
+                      <h3 className="text-lg font-serif font-bold text-amber-400 tracking-wide">Advocate Asif Ali</h3>
+                      <p className="text-xs text-slate-300 font-medium">High Court of Delhi Gown & Bands</p>
+                      <div className="mt-2.5 inline-flex items-center gap-1.5 text-[10px] text-amber-400 font-mono bg-amber-500/10 px-3 py-1 rounded-full border border-amber-500/30">
+                        <i className="fa-solid fa-gavel"></i>
+                        <span>Enrolled Advocate • High Court Bar Association</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </section>
+
+              {/* PRACTICE AREAS SECTION */}
+              <section id="practice-areas" className="max-w-7xl mx-auto px-4 sm:px-8 scroll-mt-24">
+                <div className="text-center max-w-2xl mx-auto space-y-2 mb-12">
+                  <span className="text-xs font-semibold text-amber-400 uppercase tracking-widest">Legal Representation</span>
+                  <h2 className="text-3xl sm:text-4xl font-serif font-bold text-slate-100">Practice Areas & Forums</h2>
+                  <p className="text-xs sm:text-sm text-slate-400">Comprehensive legal counsel and courtroom representation across original and appellate courts in Delhi NCR.</p>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  {PRACTICE_AREAS.map((area, idx) => (
+                    <div key={idx} className="bg-slate-900/60 border border-slate-800 hover:border-amber-500/40 rounded-2xl p-6 transition-all duration-300 hover:-translate-y-1.5 space-y-3.5 group flex flex-col justify-between">
+                      <div className="space-y-3">
+                        <div className="w-12 h-12 rounded-xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-400 text-xl group-hover:bg-amber-500 group-hover:text-slate-950 transition-colors">
+                          <i className={`fa-solid ${area.icon}`}></i>
+                        </div>
+                        <h3 className="text-lg font-serif font-bold text-slate-100 group-hover:text-amber-400 transition-colors">{area.title}</h3>
+                        <p className="text-xs sm:text-sm text-slate-400 leading-relaxed">{area.desc}</p>
+                      </div>
+                      <div className="pt-3 border-t border-slate-800/60">
+                        <span className="text-[11px] text-amber-400/80 font-mono block">Focus: {area.focus}</span>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </section>
+
+              {/* BHARATIYA NEW LAWS 2023 & DHC E-LIBRARY */}
+              <section id="criminal-laws" className="max-w-7xl mx-auto px-4 sm:px-8 scroll-mt-24">
+                <div className="bg-slate-900/90 border border-amber-500/30 rounded-3xl p-6 sm:p-10 shadow-2xl space-y-8">
+                  <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 border-b border-slate-800 pb-6">
+                    <div>
+                      <div className="inline-flex items-center gap-2 text-xs font-semibold text-amber-400 uppercase tracking-wider mb-1">
+                        <i className="fa-solid fa-book-journal-whills"></i>
+                        <span>Statutory Reference Module</span>
+                      </div>
+                      <h2 className="text-2xl sm:text-3xl font-serif font-bold text-slate-100">Bharatiya Criminal Laws 2023 & DHC e-Library</h2>
+                    </div>
+                    <a 
+                      href="https://delhihighcourt.nic.in/web/e-library" 
+                      target="_blank" 
+                      rel="noreferrer"
+                      className="px-5 py-2.5 bg-amber-500 text-slate-950 hover:bg-amber-400 font-bold text-xs rounded-xl flex items-center gap-2 transition-colors shadow-lg shadow-amber-500/20"
+                    >
+                      <i className="fa-solid fa-external-link"></i>
+                      <span>Official High Court e-Library Portal</span>
+                    </a>
+                  </div>
+
+                  {/* CODE TAB NAVIGATION */}
+                  <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
+                    {LAW_CODES.map(code => (
+                      <button
+                        key={code.id}
+                        onClick={() => setSelectedCode(code)}
+                        className={`p-4 rounded-xl border text-left transition-all duration-300 ${
+                          selectedCode.id === code.id
+                            ? 'bg-amber-500/15 border-amber-500 text-amber-400 shadow-lg'
+                            : 'bg-slate-950/60 border-slate-800 text-slate-400 hover:border-slate-700 hover:text-slate-200'
+                        }`}
+                      >
+                        <span className="text-xs font-mono font-bold block">{code.code}</span>
+                        <span className="text-sm font-serif font-bold text-slate-100 block mt-0.5 truncate">{code.title}</span>
+                      </button>
+                    ))}
+                  </div>
+
+                  {/* CODE DETAILS BOX */}
+                  <div className="bg-slate-950/80 border border-slate-800 rounded-2xl p-6 space-y-6">
+                    <div className="space-y-1">
+                      <div className="flex items-center gap-3">
+                        <h3 className="text-xl font-serif font-bold text-amber-400">{selectedCode.title}</h3>
+                        <span className="text-xs font-mono px-2.5 py-0.5 rounded bg-amber-500/10 border border-amber-500/30 text-amber-300">{selectedCode.code}</span>
+                      </div>
+                      <p className="text-xs font-medium text-slate-400">{selectedCode.subtitle}</p>
+                      <p className="text-xs sm:text-sm text-slate-300 pt-2 leading-relaxed">{selectedCode.description}</p>
+                    </div>
+
+                    <div className="space-y-3">
+                      <h4 className="text-xs font-bold text-amber-400 uppercase tracking-wider">Key Statutory Provisions & Highlights</h4>
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                        {selectedCode.highlights.map((h, i) => (
+                          <div key={i} className="p-3 bg-slate-900 border border-slate-800 rounded-xl flex items-start gap-3">
+                            <span className="px-2 py-1 rounded bg-amber-500/10 border border-amber-500/20 text-amber-400 text-[11px] font-mono font-bold shrink-0">{h.label}</span>
+                            <span className="text-xs text-slate-200 mt-0.5">{h.text}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+
+                    {selectedCode.externalUrl && (
+                      <div className="pt-2">
+                        <a 
+                          href={selectedCode.externalUrl} 
+                          target="_blank" 
+                          rel="noreferrer"
+                          className="inline-flex items-center gap-2 text-xs text-amber-400 hover:text-amber-300 underline font-semibold"
+                        >
+                          <span>Open High Court of Delhi e-Library Official Web Portal</span>
+                          <i className="fa-solid fa-arrow-up-right-from-square"></i>
+                        </a>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </section>
+
+              {/* SECTION CONVERTER */}
+              <section id="section-converter" className="max-w-7xl mx-auto px-4 sm:px-8 scroll-mt-24">
+                <div className="bg-slate-900/70 border border-slate-800 rounded-3xl p-6 sm:p-10 space-y-6">
+                  <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+                    <div>
+                      <span className="text-xs font-mono font-semibold text-amber-400 uppercase tracking-widest">Interactive Legal Utility</span>
+                      <h2 className="text-2xl sm:text-3xl font-serif font-bold text-slate-100">Old vs New Criminal Law Section Lookup</h2>
+                      <p className="text-xs sm:text-sm text-slate-400">Instantly lookup transitions from IPC 1860, CrPC 1973 & IEA 1872 to Bharatiya Laws 2023.</p>
+                    </div>
+
+                    <div className="relative w-full md:w-80">
+                      <i className="fa-solid fa-magnifying-glass absolute left-3.5 top-3.5 text-slate-400 text-xs"></i>
+                      <input 
+                        type="text" 
+                        placeholder="Search e.g. 302, 420, 482, Bail, Murder..."
+                        value={converterSearch}
+                        onChange={(e) => setConverterSearch(e.target.value)}
+                        className="w-full pl-9 pr-4 py-2.5 rounded-xl bg-slate-950 border border-slate-800 text-xs text-slate-100 focus:outline-none focus:border-amber-500 font-mono"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    {filteredConverter.map((item, idx) => (
+                      <div key={idx} className="p-4 rounded-xl bg-slate-950/70 border border-slate-800/80 hover:border-amber-500/30 transition-colors flex flex-col justify-between">
+                        <div>
+                          <div className="flex items-center justify-between gap-2 border-b border-slate-800/60 pb-2 mb-2">
+                            <span className="px-2.5 py-1 rounded bg-rose-500/10 border border-rose-500/30 text-rose-300 text-xs font-mono font-bold">
+                              {item.oldAct}
+                            </span>
+                            <i className="fa-solid fa-arrow-right text-xs text-amber-400"></i>
+                            <span className="px-2.5 py-1 rounded bg-emerald-500/10 border border-emerald-500/30 text-emerald-300 text-xs font-mono font-bold">
+                              {item.newAct}
+                            </span>
+                          </div>
+                          <h4 className="text-xs font-semibold text-slate-200">{item.oldName}</h4>
+                          <p className="text-[11px] text-slate-400 mt-1 leading-relaxed">{item.newDetails}</p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </section>
+
+              {/* COURT FORUMS */}
+              <section id="court-forums" className="max-w-7xl mx-auto px-4 sm:px-8 scroll-mt-24">
+                <div className="text-center max-w-2xl mx-auto space-y-2 mb-10">
+                  <span className="text-xs font-semibold text-amber-400 uppercase tracking-widest">Judicial Forums</span>
+                  <h2 className="text-3xl font-serif font-bold text-slate-100">Courts & Tribunals in Delhi NCR</h2>
+                  <p className="text-xs sm:text-sm text-slate-400">Regular advocacy and daily representation across all primary benches in New Delhi.</p>
+                </div>
+
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                  {COURT_FORUMS.map((f, i) => (
+                    <div key={i} className="p-4 rounded-2xl bg-slate-900/50 border border-slate-800 hover:border-amber-500/40 transition-colors space-y-1.5">
+                      <span className="text-[10px] font-mono text-amber-400 uppercase">{f.type}</span>
+                      <h4 className="text-sm font-serif font-bold text-slate-100">{f.name}</h4>
+                      <p className="text-xs text-slate-400">{f.location}</p>
+                    </div>
+                  ))}
+                </div>
+              </section>
+
+              {/* BANNER CTA */}
+              <section className="max-w-7xl mx-auto px-4 sm:px-8">
+                <div className="bg-gradient-to-r from-slate-900 via-slate-900 to-[#101b2b] border border-amber-500/40 rounded-3xl p-8 sm:p-12 shadow-2xl flex flex-col md:flex-row justify-between items-center gap-8">
+                  <div className="space-y-3 text-center md:text-left">
+                    <span className="text-xs font-mono text-amber-400 uppercase tracking-wider font-semibold">Chambers of Advocate Asif Ali</span>
+                    <h3 className="text-2xl sm:text-3xl font-serif font-bold text-slate-100">Need High Court Counsel or Bail Representation?</h3>
+                    <p className="text-xs sm:text-sm text-slate-300 max-w-xl">
+                      Schedule a confidential consultation for High Court Writ Petitions, Criminal Appeals, District Court Litigation, or Bharatiya New Criminal Laws advice.
+                    </p>
+                  </div>
+                  <div className="flex flex-col sm:flex-row gap-3.5 shrink-0">
+                    <button 
+                      onClick={() => setShowConsultModal(true)}
+                      className="px-6 py-3.5 bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-xs sm:text-sm rounded-xl shadow-lg shadow-amber-500/20 transition-all"
+                    >
+                      Request Appointment
+                    </button>
+                    <a 
+                      href="https://wa.me/919910262785?text=Hello%20Sir%20I%20need%20KANOONI%20SALAH." 
+                      target="_blank" 
+                      rel="noreferrer"
+                      className="px-6 py-3.5 bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs sm:text-sm rounded-xl flex items-center justify-center gap-2 shadow-lg shadow-emerald-600/20 transition-all"
+                    >
+                      <i className="fa-brands fa-whatsapp text-base"></i>
+                      <span>WhatsApp (+91 9910262785)</span>
+                    </a>
+                  </div>
+                </div>
+              </section>
+
+            </main>
+          ) : (
+            /* ========================================================================= */
+            /* 100% UNLIMITED FREE SECURE VAULT (LOGIN / SIGNUP / FORGOT / DIARY) */
+            /* ========================================================================= */
+            !currentUser ? (
+              <main className="flex-1 max-w-md mx-auto px-4 py-12 sm:py-16 w-full flex items-center justify-center">
+                <div className="w-full bg-slate-900 border-2 border-amber-500/40 rounded-3xl p-6 sm:p-8 shadow-[0_0_50px_rgba(217,119,6,0.18)] space-y-6 relative overflow-hidden">
+                  
+                  {/* UNLIMITED FREE VAULT STATUS BADGE */}
+                  <div className="flex items-center justify-between border-b border-slate-800 pb-3">
+                    <div className="flex items-center gap-2 text-[11px] font-mono px-3 py-1 rounded-full bg-slate-950 border border-slate-800 text-emerald-400">
+                      <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                      <span>100% Unlimited Free Secure Vault</span>
+                    </div>
+
+                    <span className="text-[10px] text-slate-500 font-mono">Zero Quotas • No API Keys</span>
+                  </div>
+
+                  {/* HEADER */}
+                  <div className="text-center space-y-1.5">
+                    <div className="w-13 h-13 mx-auto rounded-2xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-400 text-2xl shadow-lg p-3">
+                      <i className={`fa-solid ${authMode === 'signup' ? 'fa-user-plus' : authMode === 'forgot' ? 'fa-key' : 'fa-user-shield'}`}></i>
+                    </div>
+                    <h2 className="text-2xl font-serif font-bold text-slate-100">
+                      {authMode === 'signup' ? 'Advocate Registration' : authMode === 'forgot' ? 'Recover Account Password' : 'Advocate Causelist Portal'}
+                    </h2>
+                    <p className="text-xs text-slate-400">
+                      {authMode === 'signup' ? 'Create an unlimited free advocate account' : authMode === 'forgot' ? 'Enter registered Email or ID to view/recover password' : 'Secured under Sec 132 BSA 2023 / Sec 126 Evidence Act'}
+                    </p>
+                  </div>
+
+                  {/* STATUS / ERROR MESSAGE */}
+                  {authMsg.text && (
+                    <div className={`p-3 rounded-xl border text-xs flex items-center gap-2 ${
+                      authMsg.type === 'error' 
+                        ? 'bg-rose-500/10 border-rose-500/30 text-rose-300' 
+                        : 'bg-emerald-500/10 border-emerald-500/30 text-emerald-300'
+                    }`}>
+                      <i className={`fa-solid ${authMsg.type === 'error' ? 'fa-triangle-exclamation' : 'fa-circle-check'} shrink-0`}></i>
+                      <span>{authMsg.text}</span>
+                    </div>
+                  )}
+
+                  {/* MODE 1: LOGIN FORM */}
+                  {authMode === 'login' && (
+                    <form onSubmit={handleLoginSubmit} className="space-y-4 text-xs">
+                      <div>
+                        <label className="block text-slate-300 font-semibold mb-1">Advocate ID / Email</label>
+                        <div className="relative">
+                          <i className="fa-solid fa-user absolute left-3.5 top-3.5 text-slate-400"></i>
+                          <input 
+                            type="text" 
+                            required 
+                            placeholder="e.g. admin or lawyer@kanooni.com"
+                            value={loginIdent}
+                            onChange={(e) => setLoginIdent(e.target.value)}
+                            className="w-full pl-10 pr-4 py-3 rounded-xl bg-slate-950 border border-slate-800 text-slate-100 focus:outline-none focus:border-amber-500 font-mono"
+                          />
+                        </div>
+                      </div>
+
+                      <div>
+                        <div className="flex justify-between items-center mb-1">
+                          <label className="text-slate-300 font-semibold">Access Password</label>
+                          <button 
+                            type="button" 
+                            onClick={() => { setAuthMode('forgot'); setAuthMsg({ text: '', type: '' }); }}
+                            className="text-[11px] text-amber-400 hover:underline"
+                          >
+                            Forgot Password?
+                          </button>
+                        </div>
+                        <div className="relative">
+                          <i className="fa-solid fa-lock absolute left-3.5 top-3.5 text-slate-400"></i>
+                          <input 
+                            type={showPass ? 'text' : 'password'} 
+                            required 
+                            placeholder="••••••••"
+                            value={loginPass}
+                            onChange={(e) => setLoginPass(e.target.value)}
+                            className="w-full pl-10 pr-10 py-3 rounded-xl bg-slate-950 border border-slate-800 text-slate-100 focus:outline-none focus:border-amber-500 font-mono"
+                          />
+                          <button 
+                            type="button" 
+                            onClick={() => setShowPass(!showPass)}
+                            className="absolute right-3 top-3.5 text-slate-400 hover:text-slate-200"
+                          >
+                            <i className={`fa-solid ${showPass ? 'fa-eye-slash' : 'fa-eye'}`}></i>
+                          </button>
+                        </div>
+                      </div>
+
+                      <button 
+                        type="submit" 
+                        className="w-full py-3.5 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 font-bold rounded-xl text-sm shadow-lg shadow-amber-500/20 transition-all flex items-center justify-center gap-2"
+                      >
+                        <i className="fa-solid fa-right-to-bracket"></i>
+                        <span>Authenticate & Access Diary</span>
+                      </button>
+
+                      <div className="pt-2 text-center text-[11px] text-slate-400">
+                        <span>Need a new account? </span>
+                        <button 
+                          type="button" 
+                          onClick={() => { setAuthMode('signup'); setAuthMsg({ text: '', type: '' }); }}
+                          className="text-amber-400 hover:underline font-bold"
+                        >
+                          Sign Up (100% Free)
+                        </button>
+                      </div>
+                    </form>
+                  )}
+
+                  {/* MODE 2: SIGNUP FORM */}
+                  {authMode === 'signup' && (
+                    <form onSubmit={handleSignupSubmit} className="space-y-3.5 text-xs">
+                      <div>
+                        <label className="block text-slate-300 font-semibold mb-1">Advocate Full Name</label>
+                        <input 
+                          type="text" 
+                          required 
+                          placeholder="e.g. Adv. Rajesh Verma"
+                          value={signupName}
+                          onChange={(e) => setSignupName(e.target.value)}
+                          className="w-full p-2.5 rounded-xl bg-slate-950 border border-slate-800 text-slate-100 focus:outline-none focus:border-amber-500"
+                        />
+                      </div>
+
+                      <div>
+                        <label className="block text-slate-300 font-semibold mb-1">Advocate ID or Email</label>
+                        <input 
+                          type="text" 
+                          required 
+                          placeholder="e.g. rajesh or rajesh@kanooni.com"
+                          value={signupEmail}
+                          onChange={(e) => setSignupEmail(e.target.value)}
+                          className="w-full p-2.5 rounded-xl bg-slate-950 border border-slate-800 text-slate-100 focus:outline-none focus:border-amber-500 font-mono"
+                        />
+                      </div>
+
+                      <div className="grid grid-cols-2 gap-2.5">
+                        <div>
+                          <label className="block text-slate-300 font-semibold mb-1">Create Password</label>
+                          <input 
+                            type="password" 
+                            required 
+                            placeholder="Min 4 characters"
+                            value={signupPass}
+                            onChange={(e) => setSignupPass(e.target.value)}
+                            className="w-full p-2.5 rounded-xl bg-slate-950 border border-slate-800 text-slate-100 focus:outline-none focus:border-amber-500 font-mono"
+                          />
+                        </div>
+                        <div>
+                          <label className="block text-slate-300 font-semibold mb-1">Confirm Password</label>
+                          <input 
+                            type="password" 
+                            required 
+                            placeholder="Confirm password"
+                            value={signupPassConfirm}
+                            onChange={(e) => setSignupPassConfirm(e.target.value)}
+                            className="w-full p-2.5 rounded-xl bg-slate-950 border border-slate-800 text-slate-100 focus:outline-none focus:border-amber-500 font-mono"
+                          />
+                        </div>
+                      </div>
+
+                      <button 
+                        type="submit" 
+                        className="w-full py-3 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 font-bold rounded-xl text-xs sm:text-sm shadow-lg shadow-amber-500/20 transition-all flex items-center justify-center gap-2 mt-2"
+                      >
+                        <i className="fa-solid fa-user-check"></i>
+                        <span>Register Account</span>
+                      </button>
+
+                      <div className="pt-2 text-center text-[11px] text-slate-400">
+                        <span>Already registered? </span>
+                        <button 
+                          type="button" 
+                          onClick={() => { setAuthMode('login'); setAuthMsg({ text: '', type: '' }); }}
+                          className="text-amber-400 hover:underline font-bold"
+                        >
+                          Log In Here
+                        </button>
+                      </div>
+                    </form>
+                  )}
+
+                  {/* MODE 3: FORGOT PASSWORD */}
+                  {authMode === 'forgot' && (
+                    <form onSubmit={handleForgotSubmit} className="space-y-4 text-xs">
+                      <div>
+                        <label className="block text-slate-300 font-semibold mb-1">Registered Advocate ID or Email</label>
+                        <input 
+                          type="text" 
+                          required 
+                          placeholder="e.g. admin or your registered username"
+                          value={forgotEmail}
+                          onChange={(e) => setForgotEmail(e.target.value)}
+                          className="w-full p-3 rounded-xl bg-slate-950 border border-slate-800 text-slate-100 focus:outline-none focus:border-amber-500 font-mono"
+                        />
+                      </div>
+
+                      <button 
+                        type="submit" 
+                        className="w-full py-3 bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold rounded-xl text-xs sm:text-sm transition-all flex items-center justify-center gap-2"
+                      >
+                        <i className="fa-solid fa-unlock-keyhole"></i>
+                        <span>Verify & Recover Password</span>
+                      </button>
+
+                      <div className="pt-2 text-center text-[11px] text-slate-400">
+                        <button 
+                          type="button" 
+                          onClick={() => { setAuthMode('login'); setAuthMsg({ text: '', type: '' }); }}
+                          className="text-amber-400 hover:underline font-bold"
+                        >
+                          ← Back to Login
+                        </button>
+                      </div>
+                    </form>
+                  )}
+
+                  {/* FOOTER NOTICE */}
+                  <div className="pt-3 border-t border-slate-800 text-center space-y-1.5">
+                    <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-950 border border-slate-800 text-[11px] text-amber-400 font-mono">
+                      <i className="fa-solid fa-key text-xs"></i>
+                      <span>Default Demo Login: User: <strong>admin</strong> | Pass: <strong>admin</strong></span>
+                    </div>
+                    <p className="text-[10px] text-slate-500">100% Free Unlimited Local Encryption • Change ID & Password Anytime</p>
+                  </div>
+
+                </div>
+              </main>
+            ) : (
+              /* ========================================================================= */
+              /* AUTHENTICATED ADVOCATE CAUSELIST DIARY */
+              /* ========================================================================= */
+              <main className="flex-1 max-w-7xl mx-auto px-4 sm:px-8 py-10 w-full space-y-8">
+                
+                {/* PORTAL CONTROLS HEADER */}
+                <div className="bg-slate-900 border border-emerald-500/40 rounded-3xl p-6 sm:p-8 space-y-6 shadow-2xl relative overflow-hidden">
+                  <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+                    <div>
+                      <div className="flex items-center flex-wrap gap-2">
+                        <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-semibold">
+                          <i className="fa-solid fa-shield-halved"></i>
+                          <span>Privileged Diary • Sec 132 BSA 2023 / Sec 126 Evidence Act</span>
+                        </div>
+                        <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-400 text-xs font-mono">
+                          <i className="fa-solid fa-user-check"></i>
+                          <span>Logged in as: <strong>{currentUser.name}</strong> ({currentUser.email || currentUser.id})</span>
+                        </div>
+                      </div>
+                      <h1 className="text-2xl sm:text-3xl font-serif font-bold text-amber-400 mt-2">Advocate Causelist Diary & Roster</h1>
+                      <p className="text-xs text-slate-400">Chambers of Advocate Asif Ali • Daily Hearing Logs and Court Proceedings</p>
+                    </div>
+
+                    <div className="flex items-center flex-wrap gap-2.5">
+                      <button 
+                        onClick={() => setShowChangeCredsModal(true)}
+                        className="px-3.5 py-2.5 bg-amber-500/15 hover:bg-amber-500/25 border border-amber-500/40 text-amber-300 font-bold text-xs rounded-xl flex items-center gap-1.5 transition-all shadow-md"
+                        title="Change your login ID or password in future"
+                      >
+                        <i className="fa-solid fa-key"></i>
+                        <span>Change Password / ID</span>
+                      </button>
+
+                      <button 
+                        onClick={() => window.print()}
+                        className="px-3.5 py-2.5 bg-slate-800 hover:bg-slate-700 text-slate-200 font-bold text-xs rounded-xl flex items-center gap-1.5 transition-all"
+                        title="Print this Causelist"
+                      >
+                        <i className="fa-solid fa-print"></i>
+                        <span>Print</span>
+                      </button>
+
+                      <button 
+                        onClick={handleResetCases}
+                        className="px-3.5 py-2.5 bg-slate-800 hover:bg-slate-700 text-slate-300 font-semibold text-xs rounded-xl transition-all"
+                        title="Reset to default sample entries"
+                      >
+                        Reset Demo
+                      </button>
+
+                      <button 
+                        onClick={handleLogout}
+                        className="px-3.5 py-2.5 bg-rose-500/10 hover:bg-rose-500/20 border border-rose-500/30 text-rose-400 font-bold text-xs rounded-xl flex items-center gap-1.5 transition-all"
+                      >
+                        <i className="fa-solid fa-right-from-bracket"></i>
+                        <span>Logout</span>
+                      </button>
+
+                      <button 
+                        onClick={() => setShowAddModal(true)}
+                        className="px-5 py-2.5 bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-xs rounded-xl flex items-center gap-2 shadow-lg shadow-amber-500/20 transition-all shrink-0"
+                      >
+                        <i className="fa-solid fa-plus"></i>
+                        <span>Add New Cause List Entry</span>
+                      </button>
+                    </div>
+                  </div>
+
+                  {/* STATS TILES */}
+                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-2">
+                    <div className="p-3.5 rounded-2xl bg-slate-950/70 border border-slate-800">
+                      <span className="text-xs text-slate-400 block">Total Listed Matters</span>
+                      <span className="text-2xl font-serif font-bold text-amber-400">{cases.length}</span>
+                    </div>
+                    <div className="p-3.5 rounded-2xl bg-slate-950/70 border border-slate-800">
+                      <span className="text-xs text-slate-400 block">Delhi High Court</span>
+                      <span className="text-2xl font-serif font-bold text-emerald-400">
+                        {cases.filter(c => c.court.toLowerCase().includes('high court')).length}
+                      </span>
+                    </div>
+                    <div className="p-3.5 rounded-2xl bg-slate-950/70 border border-slate-800">
+                      <span className="text-xs text-slate-400 block">District Courts</span>
+                      <span className="text-2xl font-serif font-bold text-amber-300">
+                        {cases.filter(c => !c.court.toLowerCase().includes('high court') && !c.court.toLowerCase().includes('supreme court')).length}
+                      </span>
+                    </div>
+                    <div className="p-3.5 rounded-2xl bg-slate-950/70 border border-slate-800">
+                      <span className="text-xs text-slate-400 block">Supreme Court</span>
+                      <span className="text-2xl font-serif font-bold text-cyan-400">
+                        {cases.filter(c => c.court.toLowerCase().includes('supreme court')).length}
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* SEARCH AND FILTER BAR */}
+                  <div className="flex flex-col sm:flex-row justify-between items-stretch sm:items-center gap-3 pt-2 border-t border-slate-800/60">
+                    <div className="relative max-w-md w-full">
+                      <i className="fa-solid fa-magnifying-glass absolute left-3.5 top-3 text-slate-400 text-xs"></i>
+                      <input 
+                        type="text" 
+                        placeholder="Search case no, client name, stage or court..."
+                        value={searchQuery}
+                        onChange={(e) => setSearchQuery(e.target.value)}
+                        className="w-full pl-9 pr-4 py-2.5 rounded-xl bg-slate-950 border border-slate-800 text-xs text-slate-200 focus:outline-none focus:border-amber-500/60 font-mono"
+                      />
+                    </div>
+
+                    <div className="flex items-center gap-1.5 overflow-x-auto text-xs">
+                      <button 
+                        onClick={() => setCourtFilter('ALL')} 
+                        className={`px-3 py-1.5 rounded-lg border font-medium ${courtFilter === 'ALL' ? 'bg-amber-500 text-slate-950 border-amber-500 font-bold' : 'bg-slate-950 text-slate-400 border-slate-800'}`}
+                      >
+                        All ({cases.length})
+                      </button>
+                      <button 
+                        onClick={() => setCourtFilter('HC')} 
+                        className={`px-3 py-1.5 rounded-lg border font-medium ${courtFilter === 'HC' ? 'bg-amber-500 text-slate-950 border-amber-500 font-bold' : 'bg-slate-950 text-slate-400 border-slate-800'}`}
+                      >
+                        High Court
+                      </button>
+                      <button 
+                        onClick={() => setCourtFilter('DISTRICT')} 
+                        className={`px-3 py-1.5 rounded-lg border font-medium ${courtFilter === 'DISTRICT' ? 'bg-amber-500 text-slate-950 border-amber-500 font-bold' : 'bg-slate-950 text-slate-400 border-slate-800'}`}
+                      >
+                        District Courts
+                      </button>
+                      <button 
+                        onClick={() => setCourtFilter('SC')} 
+                        className={`px-3 py-1.5 rounded-lg border font-medium ${courtFilter === 'SC' ? 'bg-amber-500 text-slate-950 border-amber-500 font-bold' : 'bg-slate-950 text-slate-400 border-slate-800'}`}
+                      >
+                        Supreme Court
+                      </button>
+                    </div>
+                  </div>
+                </div>
+
+                {/* CAUSE LIST TABLE */}
+                <div className="bg-slate-900 border border-slate-800 rounded-3xl overflow-hidden shadow-2xl">
+                  <div className="overflow-x-auto">
+                    <table className="w-full text-left text-xs">
+                      <thead className="bg-slate-950 text-slate-400 uppercase font-semibold border-b border-slate-800 tracking-wider">
+                        <tr>
+                          <th className="p-4">Case Number</th>
+                          <th className="p-4">Court Forum</th>
+                          <th className="p-4">Client Name</th>
+                          <th className="p-4">Opposite Party</th>
+                          <th className="p-4">Next Date</th>
+                          <th className="p-4">Stage / Status</th>
+                          <th className="p-4 text-center">Action</th>
+                        </tr>
+                      </thead>
+                      <tbody className="divide-y divide-slate-800/80">
+                        {filteredCases.length === 0 ? (
+                          <tr>
+                            <td colSpan="7" className="p-8 text-center text-slate-400">
+                              No cases matching your search criteria.
+                            </td>
+                          </tr>
+                        ) : (
+                          filteredCases.map(c => (
+                            <tr key={c.id} className="hover:bg-slate-800/40 transition-colors">
+                              <td className="p-4 font-mono font-bold text-amber-400 whitespace-nowrap">{c.caseNo}</td>
+                              <td className="p-4 font-medium text-slate-200">{c.court}</td>
+                              <td className="p-4 text-slate-100 font-semibold">{c.client}</td>
+                              <td className="p-4 text-slate-400">{c.opposite || '—'}</td>
+                              <td className="p-4 font-mono font-bold text-emerald-400 whitespace-nowrap">{c.nextDate}</td>
+                              <td className="p-4">
+                                <span className="px-2.5 py-1 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-300 text-[10px] font-semibold whitespace-nowrap">
+                                  {c.stage}
+                                </span>
+                              </td>
+                              <td className="p-4 text-center">
+                                <button 
+                                  onClick={() => handleDeleteCase(c.id)}
+                                  className="text-slate-500 hover:text-rose-400 transition-colors p-1"
+                                  title="Remove case entry"
+                                >
+                                  <i className="fa-regular fa-trash-can"></i>
+                                </button>
+                              </td>
+                            </tr>
+                          ))
+                        )}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </main>
+            )
+          )}
+
+
+          {showChangeCredsModal && (
+            <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/85 backdrop-blur-md p-4 animate-fade-in">
+              <div className="max-w-md w-full bg-slate-900 border-2 border-amber-500/40 rounded-3xl p-6 sm:p-8 space-y-5 text-slate-200 shadow-[0_0_55px_rgba(217,119,6,0.25)] relative">
+                <button 
+                  onClick={() => setShowChangeCredsModal(false)}
+                  className="absolute top-4 right-4 text-slate-400 hover:text-slate-100 w-8 h-8 rounded-full bg-slate-950 flex items-center justify-center border border-slate-800"
+                >
+                  <i className="fa-solid fa-xmark text-sm"></i>
+                </button>
+
+                <div className="flex items-center gap-3 border-b border-slate-800 pb-3.5">
+                  <div className="w-10 h-10 rounded-xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-400">
+                    <i className="fa-solid fa-key"></i>
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-serif font-bold text-amber-400">Update ID & Password</h3>
+                    <p className="text-xs text-slate-400">Modify your authentication credentials anytime</p>
+                  </div>
+                </div>
+
+                <form onSubmit={handleChangeCredsSubmit} className="space-y-3.5 text-xs">
+                  <div>
+                    <label className="block text-slate-300 font-semibold mb-1">Current Password *</label>
+                    <input 
+                      type="password" 
+                      required 
+                      placeholder="Enter your current password"
+                      value={oldPass}
+                      onChange={(e) => setOldPass(e.target.value)}
+                      className="w-full p-2.5 rounded-xl bg-slate-950 border border-slate-800 text-slate-100 focus:outline-none focus:border-amber-500 font-mono"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-slate-300 font-semibold mb-1">New Advocate ID or Email (Optional)</label>
+                    <input 
+                      type="text" 
+                      placeholder={currentUser?.email || currentUser?.id || "Leave blank to keep unchanged"}
+                      value={newIdent}
+                      onChange={(e) => setNewIdent(e.target.value)}
+                      className="w-full p-2.5 rounded-xl bg-slate-950 border border-slate-800 text-slate-100 focus:outline-none focus:border-amber-500 font-mono"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-slate-300 font-semibold mb-1">New Password</label>
+                    <input 
+                      type="password" 
+                      placeholder="Enter new password (min 4 characters)"
+                      value={newPass}
+                      onChange={(e) => setNewPass(e.target.value)}
+                      className="w-full p-2.5 rounded-xl bg-slate-950 border border-slate-800 text-slate-100 focus:outline-none focus:border-amber-500 font-mono"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-slate-300 font-semibold mb-1">Confirm New Password</label>
+                    <input 
+                      type="password" 
+                      placeholder="Confirm new password"
+                      value={newPassConfirm}
+                      onChange={(e) => setNewPassConfirm(e.target.value)}
+                      className="w-full p-2.5 rounded-xl bg-slate-950 border border-slate-800 text-slate-100 focus:outline-none focus:border-amber-500 font-mono"
+                    />
+                  </div>
+
+                  <div className="pt-2 flex justify-end gap-2.5">
+                    <button 
+                      type="button" 
+                      onClick={() => setShowChangeCredsModal(false)}
+                      className="px-4 py-2.5 rounded-xl bg-slate-800 text-slate-300 text-xs"
+                    >
+                      Cancel
+                    </button>
+                    <button 
+                      type="submit" 
+                      className="px-5 py-2.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-xs flex items-center gap-1.5 shadow-lg shadow-amber-500/20"
+                    >
+                      <i className="fa-solid fa-floppy-disk"></i>
+                      <span>Save New Credentials</span>
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          )}
+
+          {/* SUDHIR KUMAR SOLANKI MESSAGE POPUP MODAL */}
+          {showSudhirModal && (
+            <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/85 backdrop-blur-md p-4 animate-fade-in">
+              <div className="max-w-md w-full bg-slate-900 border-2 border-amber-500/40 rounded-3xl p-6 sm:p-8 space-y-5 text-slate-200 shadow-[0_0_55px_rgba(217,119,6,0.25)] relative">
+                <button 
+                  onClick={() => setShowSudhirModal(false)}
+                  className="absolute top-4 right-4 text-slate-400 hover:text-slate-100 transition-colors w-8 h-8 rounded-full bg-slate-950 flex items-center justify-center border border-slate-800"
+                >
+                  <i className="fa-solid fa-xmark text-sm"></i>
+                </button>
+
+                <div className="flex items-center gap-3.5 border-b border-slate-800 pb-4">
+                  <div className="w-12 h-12 rounded-2xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-400 text-xl shrink-0">
+                    <i className="fa-solid fa-bolt"></i>
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-serif font-bold text-amber-400">Sudhir Kumar Solanki</h3>
+                    <p className="text-xs text-slate-400 font-mono">Web Developer & AI Intelligence</p>
+                  </div>
+                </div>
+
+                <div className="p-4 rounded-2xl bg-slate-950 border border-slate-800 space-y-2">
+                  <div className="flex items-center gap-2 text-amber-400 text-xs font-semibold">
+                    <i className="fa-solid fa-comment-dots"></i>
+                    <span>Message from Sudhir Kumar Solanki</span>
+                  </div>
+                  <p className="text-sm text-slate-100 font-medium leading-relaxed italic">
+                    "Hi i am Sudhir what kind of website you need. please provide details. thanks for contact us."
+                  </p>
+                </div>
+
+                <div className="pt-2 flex flex-col sm:flex-row gap-3">
+                  <a 
+                    href="https://wa.me/917557575514?text=hi%20I%20need%20a%20website" 
+                    target="_blank"
+                    rel="noreferrer"
+                    className="flex-1 py-3 bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs rounded-xl flex items-center justify-center gap-2 shadow-lg shadow-emerald-600/20 transition-all"
+                  >
+                    <i className="fa-brands fa-whatsapp text-base"></i>
+                    <span>Send Inquiry to Sudhir (+91 7557575514)</span>
+                  </a>
+                  <button 
+                    onClick={() => setShowSudhirModal(false)}
+                    className="px-5 py-3 bg-slate-800 hover:bg-slate-700 text-slate-300 font-semibold text-xs rounded-xl transition-all"
+                  >
+                    Close
+                  </button>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* CONSULTATION APPOINTMENT MODAL */}
+          {showConsultModal && (
+            <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/85 backdrop-blur-md p-4">
+              <div className="max-w-lg w-full bg-slate-900 border-2 border-amber-500/40 rounded-3xl p-6 sm:p-8 space-y-5 text-slate-200 max-h-[90vh] overflow-y-auto">
+                <div className="flex justify-between items-center border-b border-slate-800 pb-3.5">
+                  <div className="flex items-center gap-2.5">
+                    <i className="fa-regular fa-calendar-check text-amber-400 text-lg"></i>
+                    <h3 className="text-lg sm:text-xl font-serif font-bold text-amber-400">Chamber Consultation Request</h3>
+                  </div>
+                  <button onClick={() => setShowConsultModal(false)} className="text-slate-400 hover:text-slate-100 w-8 h-8 rounded-full bg-slate-950 flex items-center justify-center border border-slate-800">
+                    <i className="fa-solid fa-xmark text-sm"></i>
+                  </button>
+                </div>
+                
+                <p className="text-xs text-slate-400">Request a privileged consultation at Advocate Asif Ali's High Court / Chamber desk.</p>
+                
+                <form onSubmit={handleConsultSubmit} className="space-y-3.5 text-xs">
+                  <div>
+                    <label className="block text-slate-300 font-medium mb-1">Your Full Name *</label>
+                    <input 
+                      type="text" 
+                      required
+                      placeholder="e.g. Rajesh Kumar" 
+                      value={consultForm.name}
+                      onChange={(e) => setConsultForm({...consultForm, name: e.target.value})}
+                      className="w-full p-2.5 rounded-xl bg-slate-950 border border-slate-800 text-slate-100 focus:outline-none focus:border-amber-500" 
+                    />
+                  </div>
+                  
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div>
+                      <label className="block text-slate-300 font-medium mb-1">Contact Phone / WhatsApp *</label>
+                      <input 
+                        type="text" 
+                        required
+                        placeholder="+91 9876543210" 
+                        value={consultForm.phone}
+                        onChange={(e) => setConsultForm({...consultForm, phone: e.target.value})}
+                        className="w-full p-2.5 rounded-xl bg-slate-950 border border-slate-800 text-slate-100 focus:outline-none focus:border-amber-500" 
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-slate-300 font-medium mb-1">Urgency</label>
+                      <select 
+                        value={consultForm.urgency}
+                        onChange={(e) => setConsultForm({...consultForm, urgency: e.target.value})}
+                        className="w-full p-2.5 rounded-xl bg-slate-950 border border-slate-800 text-slate-100 focus:outline-none focus:border-amber-500"
+                      >
+                        <option>Urgent Bail / Hearing</option>
+                        <option>Standard Listing</option>
+                        <option>Legal Advisory / Drafting</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div>
+                      <label className="block text-slate-300 font-medium mb-1">Matter Category</label>
+                      <select 
+                        value={consultForm.matterType}
+                        onChange={(e) => setConsultForm({...consultForm, matterType: e.target.value})}
+                        className="w-full p-2.5 rounded-xl bg-slate-950 border border-slate-800 text-slate-100 focus:outline-none focus:border-amber-500"
+                      >
+                        <option>High Court Writ Petition (Art 226)</option>
+                        <option>Criminal Defense & Bail (BNSS)</option>
+                        <option>Quashing Petition (Sec 528 BNSS)</option>
+                        <option>Civil Suit & Property Dispute</option>
+                        <option>Commercial Arbitration</option>
+                        <option>Matrimonial & Family Court</option>
+                        <option>Supreme Court SLP</option>
+                      </select>
+                    </div>
+                    <div>
+                      <label className="block text-slate-300 font-medium mb-1">Preferred Court</label>
+                      <select 
+                        value={consultForm.court}
+                        onChange={(e) => setConsultForm({...consultForm, court: e.target.value})}
+                        className="w-full p-2.5 rounded-xl bg-slate-950 border border-slate-800 text-slate-100 focus:outline-none focus:border-amber-500"
+                      >
+                        <option>High Court of Delhi</option>
+                        <option>Supreme Court of India</option>
+                        <option>Patiala House Courts</option>
+                        <option>Tis Hazari Courts</option>
+                        <option>Saket District Courts</option>
+                        <option>Rouse Avenue Courts</option>
+                        <option>NCLT / NCLAT</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div>
+                    <label className="block text-slate-300 font-medium mb-1">Brief Description of Legal Matter</label>
+                    <textarea 
+                      rows="3" 
+                      placeholder="State FIR details, court case number, or urgency..." 
+                      value={consultForm.details}
+                      onChange={(e) => setConsultForm({...consultForm, details: e.target.value})}
+                      className="w-full p-2.5 rounded-xl bg-slate-950 border border-slate-800 text-slate-100 focus:outline-none focus:border-amber-500"
+                    ></textarea>
+                  </div>
+
+                  <div className="pt-2 flex justify-end gap-2.5">
+                    <button type="button" onClick={() => setShowConsultModal(false)} className="px-4 py-2.5 rounded-xl bg-slate-800 text-slate-300 text-xs">
+                      Cancel
+                    </button>
+                    <button 
+                      type="submit"
+                      className="px-5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs flex items-center gap-1.5 shadow-lg shadow-emerald-600/20"
+                    >
+                      <i className="fa-brands fa-whatsapp text-sm"></i>
+                      <span>Send to Advocate Asif Ali (+91 9910262785)</span>
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          )}
+
+          {/* ADD CASE MODAL (FOR ADVOCATE DIARY) */}
+          {showAddModal && (
+            <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/85 backdrop-blur-md p-4">
+              <form onSubmit={handleAddCase} className="max-w-md w-full bg-slate-900 border-2 border-amber-500/40 rounded-3xl p-6 sm:p-8 space-y-4 text-slate-200">
+                <div className="flex justify-between items-center border-b border-slate-800 pb-3">
+                  <h3 className="text-lg font-serif font-bold text-amber-400">Add New Cause List Record</h3>
+                  <button type="button" onClick={() => setShowAddModal(false)} className="text-slate-400 hover:text-slate-100 w-8 h-8 rounded-full bg-slate-950 flex items-center justify-center border border-slate-800">
+                    <i className="fa-solid fa-xmark text-sm"></i>
+                  </button>
+                </div>
+                
+                <div className="space-y-3 text-xs">
+                  <div>
+                    <label className="block text-slate-300 mb-1">Case Number *</label>
+                    <input 
+                      type="text" 
+                      required 
+                      placeholder="e.g. W.P.(C) 5510/2026" 
+                      value={newCase.caseNo}
+                      onChange={(e) => setNewCase({...newCase, caseNo: e.target.value})}
+                      className="w-full p-2.5 rounded-xl bg-slate-950 border border-slate-800 text-slate-100 focus:outline-none focus:border-amber-500 font-mono" 
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-slate-300 mb-1">Court Forum *</label>
+                    <input 
+                      type="text" 
+                      required 
+                      placeholder="e.g. High Court of Delhi - Court 16" 
+                      value={newCase.court}
+                      onChange={(e) => setNewCase({...newCase, court: e.target.value})}
+                      className="w-full p-2.5 rounded-xl bg-slate-950 border border-slate-800 text-slate-100 focus:outline-none focus:border-amber-500" 
+                    />
+                  </div>
+                  <div className="grid grid-cols-2 gap-3">
+                    <div>
+                      <label className="block text-slate-300 mb-1">Client Name *</label>
+                      <input 
+                        type="text" 
+                        required 
+                        placeholder="Client Name" 
+                        value={newCase.client}
+                        onChange={(e) => setNewCase({...newCase, client: e.target.value})}
+                        className="w-full p-2.5 rounded-xl bg-slate-950 border border-slate-800 text-slate-100 focus:outline-none focus:border-amber-500" 
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-slate-300 mb-1">Opposite Party</label>
+                      <input 
+                        type="text" 
+                        placeholder="Opposite Party" 
+                        value={newCase.opposite}
+                        onChange={(e) => setNewCase({...newCase, opposite: e.target.value})}
+                        className="w-full p-2.5 rounded-xl bg-slate-950 border border-slate-800 text-slate-100 focus:outline-none focus:border-amber-500" 
+                      />
+                    </div>
+                  </div>
+                  <div className="grid grid-cols-2 gap-3">
+                    <div>
+                      <label className="block text-slate-300 mb-1">Next Hearing Date</label>
+                      <input 
+                        type="date" 
+                        value={newCase.nextDate}
+                        onChange={(e) => setNewCase({...newCase, nextDate: e.target.value})}
+                        className="w-full p-2.5 rounded-xl bg-slate-950 border border-slate-800 text-slate-100 focus:outline-none focus:border-amber-500" 
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-slate-300 mb-1">Case Stage</label>
+                      <input 
+                        type="text" 
+                        placeholder="Stage / Hearing" 
+                        value={newCase.stage}
+                        onChange={(e) => setNewCase({...newCase, stage: e.target.value})}
+                        className="w-full p-2.5 rounded-xl bg-slate-950 border border-slate-800 text-slate-100 focus:outline-none focus:border-amber-500" 
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                <div className="pt-2 flex justify-end gap-2">
+                  <button type="button" onClick={() => setShowAddModal(false)} className="px-4 py-2.5 rounded-xl bg-slate-800 text-slate-300 text-xs">Cancel</button>
+                  <button type="submit" className="px-5 py-2.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-xs">Save Case Entry</button>
+                </div>
+              </form>
+            </div>
+          )}
+
+          {/* FOOTER SECTION */}
+          <footer className="bg-[#04070a] border-t border-slate-800/80 px-4 sm:px-8 py-12 text-center text-xs text-slate-400 space-y-5 mt-auto">
+            <div className="max-w-7xl mx-auto space-y-4">
+              
+              <div className="flex flex-wrap justify-center items-center gap-4 text-slate-300 text-xs sm:text-sm">
+                <span className="font-serif font-bold text-amber-400">Kanooni Salah</span>
+                <span>•</span>
+                <span>Advocate Asif Ali</span>
+                <span>•</span>
+                <span>High Court of Delhi</span>
+                <span>•</span>
+                <a href="https://delhihighcourt.nic.in/web/e-library" target="_blank" rel="noreferrer" className="text-amber-400 hover:underline">
+                  High Court e-Library Portal ↗
+                </a>
+              </div>
+
+              <p className="text-[11px] text-slate-500 max-w-3xl mx-auto leading-relaxed">
+                Bar Council of India Rule 36 Compliant. The content on this website is for informational reference regarding Indian statutory laws (BNS, BNSS, BSA 2023) and High Court procedures. Access does not constitute legal solicitation or advocate-client relationship.
+              </p>
+
+              {/* CREATIVE INTELIGENCE ATTRIBUTION BADGE (SUDHIR KUMAR SOLANKI) */}
+              <div className="pt-4 flex justify-center items-center">
+                <button 
+                  onClick={() => setShowSudhirModal(true)}
+                  className="relative group cursor-pointer inline-flex items-center gap-2.5 px-6 py-2.5 rounded-full bg-slate-900/95 border border-amber-500/35 shadow-[0_0_20px_rgba(217,119,6,0.15)] hover:shadow-[0_0_35px_rgba(217,119,6,0.35)] hover:border-amber-400/70 transition-all duration-300"
+                >
+                  <span className="flex h-2.5 w-2.5 relative">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75"></span>
+                    <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-amber-500"></span>
+                  </span>
+                  <span className="text-xs font-mono font-medium tracking-wide bg-gradient-to-r from-amber-300 via-amber-100 to-amber-400 bg-clip-text text-transparent">
+                    Designed by GrowthMachine Studio
+                  </span>
+                  <span className="text-amber-400 text-xs group-hover:rotate-12 transition-transform duration-300">⚡</span>
+                </button>
+              </div>
+
+            </div>
+          </footer>
+        </div>
+      );
+    }
+
+    ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+  </script>
+</body>
+</html>
